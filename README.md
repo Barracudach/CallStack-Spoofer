@@ -28,6 +28,12 @@ Usermode c++17 and above
 Uernelmode c++14 and above
 
 ### PoC
+```mermaid
+erDiagram
+    CALL STACK ||--o{ ORDER : places
+    SPOOF OFF ||--|{ <img src="png/before.jpg" width="320"/>
+    SPOOF ON }|..|{ <img src="png/after.png" width="320"/>
+```
 Call stack with spoofer enabled:
 
 <img src="png/before.jpg" width="320"/>
@@ -48,3 +54,5 @@ With each subsequent same call, the address will match. Therefore, we can cache 
 
 It is important to understand that no function calls should be used in the shellcode, except for calls via direct addresses, because the calls use **nearcall**, and we will get an invalid relative call.
 We also encrypt our return address with xor , because it will still be stored on the stack.
+
+It was written in a hurry, so there are flaws here.
