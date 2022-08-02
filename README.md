@@ -24,8 +24,8 @@ Developed for the x64 platform.<br/>
 Requires changes for x32.<br/>
 
 ### c++ standart
-Usermode c++17 and above<br/>
-Kernelmode c++14 and above
+-Usermode c++17 and above<br/>
+-Kernelmode c++14 and above
 
 ### PoC
 Call stack with spoofer disabled | Call stack with spoofer enabled
@@ -33,8 +33,8 @@ Call stack with spoofer disabled | Call stack with spoofer enabled
 ![](png/before.jpg) | ![](png/after.png)
 
 There are 2 modes of operation:
-- Erase the return address of the current function and restore it when the destructor is called during the return of the function. Since we are using a class with a local scope, we will call the destructor anyway. This also works with exceptions.
-- Generate a shellcode that will proxy our system calls, as a result of which the return address will not point to our code.
+ 1. Erase the return address of the current function and restore it when the destructor is called during the return of the function. Since we are using a class with a local scope, we will call the destructor anyway. This also works with exceptions.
+ 2. Generate a shellcode that will proxy our system calls, as a result of which the return address will not point to our code.
 
 While the first case is simple, the second case is a bit more complicated. What should we know? The function template generates a function at compile time with certain parameters that we call it with in the code. Subsequent calls will use the already generated function. Therefore, we can get the address of the generated function like this:
 ```cpp
