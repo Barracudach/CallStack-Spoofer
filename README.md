@@ -1,6 +1,6 @@
 # CallStack-Spoofer
 
-A simple tool that will make it harder to find your code in the call stack.
+A simple tool that will make it harder to find your code by stackwalker or other stack analyze.
 This works both in the kernel-mode and in the user-mode.
 Safe with runtime exceptions.
 
