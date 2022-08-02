@@ -19,9 +19,9 @@ SPOOF_CALL(ULONG,Beep)(500, 500);//spoof system call
 ```
 
 ### presetting
-For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)<br/>
-Developed for the x64 platform.<br/>
-Requires changes for x32.<br/>
+>For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)<br/>
+>Developed for the x64 platform.<br/>
+>Requires changes for x32.<br/>
 
 ### c++ standart
 Usermode c++17 and above
