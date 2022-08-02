@@ -131,7 +131,7 @@ namespace CallSpoofer
 	template <typename Func, typename ...Args>
 	typename std::invoke_result<Func, Args...>::type
 #endif
-		__declspec(safebuffers)ShellCodeGenerator(Func f, Args&... args)
+	__declspec(safebuffers) ShellCodeGenerator(Func f, Args&... args)
 	{
 #ifdef _KERNEL_MODE
 		using this_func_type = decltype(ShellCodeGenerator<RetType, Func, Args&...>);
@@ -227,7 +227,7 @@ namespace CallSpoofer
 
 			if (!p_shellcode)
 			{
-				//θ βρε θ οθηδεφ
+				//Γ¨ Γ’Γ±Γ₯ Γ¨ Γ―Γ¨Γ§Γ€Γ₯ΓΆ
 				//DbgPrint("!p_shellcode");
 
 			}
