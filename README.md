@@ -28,17 +28,15 @@ Usermode c++17 and above
 Uernelmode c++14 and above
 
 ### PoC
-```mermaid
-erDiagram
-    CALL STACK ||--o{ ORDER : places
-    SPOOF OFF ||--|{ <img src="png/before.jpg" width="320"/>
-    SPOOF ON }|..|{ <img src="png/after.png" width="320"/>
-```
-Call stack with spoofer enabled:
+Call stack with spoofer disabled | Call stack with spoofer enabled
+--- | ---
+![](png/before.jpg) | ![](png/after.png)
 
-<img src="png/before.jpg" width="320"/>
 
 Call stack with spoofer disabled:
+
+<img src="png/before.jpg" width="320"/>
+Call stack with spoofer enabled:
 
 <img src="png/after.png" width="320"/>
 
