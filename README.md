@@ -19,9 +19,9 @@ SPOOF_CALL(ULONG,Beep)(500, 500);//spoof system call
 ```
 
 ### presetting
->For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)<br/>
->Developed for the x64 platform.<br/>
->Requires changes for x32.<br/>
+For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)<br/>
+Developed for the x64 platform.<br/>
+Requires changes for x32.<br/>
 
 ### c++ standart
 Usermode c++17 and above
@@ -30,11 +30,11 @@ Uernelmode c++14 and above
 ### PoC
 Call stack with spoofer enabled:
 
-<img src="png/before.jpg" width="280"/>
+<img src="png/before.jpg" width="320"/>
 
 Call stack with spoofer disabled:
 
-<img src="png/after.png" width="280"/>
+<img src="png/after.png" width="320"/>
 
 There are 2 modes of operation:
 - Erase the return address of the current function and restore it when the destructor is called during the return of the function. Since we are using a class with a local scope, we will call the destructor anyway. This also works with exceptions.
