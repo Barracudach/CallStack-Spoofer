@@ -28,10 +28,12 @@ Uernelmode c++14 and above
 
 ### PoC
 Call stack with spoofer enabled:
-<img src="png/before.jpg" width="200"/>
 
-Call stack with spoofer disabled
-<img src="png/after.png" width="200"/>
+<img src="png/before.jpg" width="280"/>
+
+Call stack with spoofer disabled:
+
+<img src="png/after.png" width="280"/>
 
 There are 2 modes of operation:
 - Erase the return address of the current function and restore it when the destructor is called during the return of the function. Since we are using a class with a local scope, we will call the destructor anyway. This also works with exceptions.
