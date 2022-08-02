@@ -24,8 +24,8 @@ Developed for the x64 platform.<br/>
 Requires changes for x32.<br/>
 
 ### c++ standart
-Usermode c++17 and above
-Uernelmode c++14 and above
+Usermode c++17 and above<br/>
+Kernelmode c++14 and above
 
 ### PoC
 Call stack with spoofer disabled | Call stack with spoofer enabled
