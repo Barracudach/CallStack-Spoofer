@@ -15,7 +15,7 @@ SPOOF_CALL(Beep)(500, 500);//spoof system call
 ### example in kernel-mode
 ```cpp
 SPOOF_FUNC;//spoof current function
-SPOOF_CALL(ULONG,Beep)(500, 500);//spoof system call
+SPOOF_CALL(NTSTATUS,NtClose)(handle);//spoof system call
 ```
 
 ### presetting
