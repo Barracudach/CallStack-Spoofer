@@ -4,7 +4,7 @@ A simple tool that will make it harder to find your code in the call stack.
 This works both in the kernel-mode and in the user-mode.
 Safe with runtime exceptions.
 
-[IDA output when compiling first line](# PoC)
+[How in work, PoC](# PoC)
 
 ### example in user-mode
 ```cpp
@@ -17,6 +17,7 @@ SPOOF_CALL(Beep)(500, 500);//spoof system call
 SPOOF_FUNC;//spoof current function
 SPOOF_CALL(ULONG,Beep)(500, 500);//spoof system call
 ```
+
 ### presetting
 >For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)\n/n
 >Developed for the x64 platform.
