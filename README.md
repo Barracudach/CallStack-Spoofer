@@ -38,7 +38,7 @@ There are 2 modes of operation:
 
 While the first case is simple, the second case is a bit more complicated. What should we know? The function template generates a function at compile time with certain parameters that we call it with in the code. Subsequent calls will use the already generated function. Therefore, we can get the address of the generated function like this:
 ```cpp
-	PVOID self_addr = static_cast<PVOID>(&ShellCodeGenerator<RetType, Func*, Args&&...>);
+PVOID self_addr = static_cast<PVOID>(&ShellCodeGenerator<RetType, Func*, Args&&...>);
 ```
 With each subsequent same call, the address will match. Therefore, we can cache our matched shellcode and template function address pairs so that we only allocate the shellcode once and then use it. For backwards compatibility with the kernel, no standard containers are used.
 
