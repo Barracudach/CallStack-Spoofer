@@ -32,14 +32,6 @@ Call stack with spoofer disabled | Call stack with spoofer enabled
 --- | ---
 ![](png/before.jpg) | ![](png/after.png)
 
-
-Call stack with spoofer disabled:
-
-<img src="png/before.jpg" width="320"/>
-Call stack with spoofer enabled:
-
-<img src="png/after.png" width="320"/>
-
 There are 2 modes of operation:
 - Erase the return address of the current function and restore it when the destructor is called during the return of the function. Since we are using a class with a local scope, we will call the destructor anyway. This also works with exceptions.
 - Generate a shellcode that will proxy our system calls, as a result of which the return address will not point to our code.
