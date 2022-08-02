@@ -45,4 +45,4 @@ With each subsequent same call, the address will match. Therefore, we can cache 
 It is important to understand that no function calls should be used in the shellcode, except for calls via direct addresses, because the calls use **nearcall**, and we will get an invalid relative call.
 We also encrypt our return address with xor , because it will still be stored on the stack.
 
-It was written in a hurry, so there are flaws here.
+~~It was written in a hurry, so there are flaws here.~~
