@@ -4,7 +4,7 @@ A simple tool that will make it harder to find your code in the call stack.
 This works both in the kernel-mode and in the user-mode.
 Safe with runtime exceptions.
 
-[How in work, PoC](# PoC)
+[How in work, PoC](#PoC)
 
 ### example in user-mode
 ```cpp
