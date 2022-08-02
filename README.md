@@ -4,7 +4,7 @@ A simple tool that will make it harder to find your code by stackwalker or other
 This works both in the kernel-mode and in the user-mode.<br/>
 Safe with runtime exceptions.<br/>
 
-[How in work, PoC](#PoC)
+[PoC](#PoC)
 
 ### example in user-mode
 ```cpp
