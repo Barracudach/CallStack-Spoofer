@@ -18,7 +18,7 @@ SPOOF_FUNC;//spoof current function
 SPOOF_CALL(ULONG,Beep)(500, 500);//spoof system call
 ```
 ### presetting
->For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)
+>For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)\n/n
 >Developed for the x64 platform.
 >Requires changes for x32.
 
