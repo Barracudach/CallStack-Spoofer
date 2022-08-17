@@ -35,9 +35,9 @@
 
 #define SPOOF_FUNC CallSpoofer::SpoofFunction spoof(_AddressOfReturnAddress());
 #ifdef _KERNEL_MODE
-#define SPOOF_CALL(ret_type,name) (CallSpoofer::SafeCall<ret_type,std::remove_reference_t<decltype(name)>>(&name))
+#define SPOOF_CALL(ret_type,name) (CallSpoofer::SafeCall<ret_type,std::remove_reference_t<decltype(name)>>(name))
 #else
-#define SPOOF_CALL(name) (CallSpoofer::SafeCall<std::remove_reference_t<decltype(name)>>(&name))
+#define SPOOF_CALL(name) (CallSpoofer::SafeCall>(name))
 #endif
 
 
@@ -164,7 +164,7 @@ namespace CallSpoofer
 
 
 #ifdef _KERNEL_MODE
-	template<typename RetType, class Func >
+	template<typename RetType, class Func>
 #else
 	template<class Func >
 #endif
@@ -174,7 +174,7 @@ namespace CallSpoofer
 		Func* funcPtr;
 
 	public:
-		SafeCall(Func func) :funcPtr(func) {}
+		SafeCall(Func* func) :funcPtr(func) {}
 
 
 		template<typename... Args>
@@ -238,3 +238,5 @@ namespace CallSpoofer
 		}
 	};
 }
+
+
