@@ -20,7 +20,7 @@ SPOOF_CALL(NTSTATUS,NtClose)(handle);//spoof system call
 ### call by pointer
 ```cpp
 BOOL (WINAPI * beep)(_In_ DWORD dwFreq,_In_ DWORD dwDuration)=&Beep;
-SPOOF_CALL(*beep)(500,500);//need dereference
+SPOOF_CALL(beep)(500,500);
 ```
 
 ### presetting
