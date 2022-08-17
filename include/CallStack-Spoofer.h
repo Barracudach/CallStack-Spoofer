@@ -37,7 +37,7 @@
 #ifdef _KERNEL_MODE
 #define SPOOF_CALL(ret_type,name) (CallSpoofer::SafeCall<ret_type,std::remove_reference_t<decltype(name)>>(&name))
 #else
-#define SPOOF_CALL(name) (CallSpoofer::SafeCall<decltype(name)>(&name))
+#define SPOOF_CALL(name) (CallSpoofer::SafeCall<std::remove_reference_t<decltype(name)>>(&name))
 #endif
 
 
