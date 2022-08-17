@@ -4,10 +4,10 @@
 #include <ntdef.h>
 #include <xtr1common> 
 #else
+#include <Windows.h>
 #include <utility>
 #endif
 #include  <Intrin.h> 
-
 
 /*
  *  Copyright 2022 Barracudach
@@ -25,11 +25,11 @@
  * limitations under the License.
  */
 
- //From repository: https://github.com/Barracudach/CallStack-Spoofer
- //Supports 2 modes: kernelmode and usermode(x64)
- //For kernel- disable Control Flow Guard (CFG) /guard:cf 
- //usermode c++17 and above
- //kernelmode c++14 and above
+ // === FAQ === documentation is available at https://github.com/Barracudach
+//Supports 2 modes: kernelmode and usermode(x64)
+//For kernel- disable Control Flow Guard (CFG) /guard:cf 
+//usermode c++17 and above
+//kernelmode c++14 and above
 
 
 
@@ -98,7 +98,7 @@ namespace CallSpoofer
 			temp = *(uintptr_t*)ret_addr_in_stack;
 			temp ^= xor_key;
 			*(uintptr_t*)ret_addr_in_stack = 0;
-		}
+}
 		~SpoofFunction()
 		{
 			temp ^= xor_key;
@@ -131,7 +131,7 @@ namespace CallSpoofer
 	template <typename Func, typename ...Args>
 	typename std::invoke_result<Func, Args...>::type
 #endif
-	__declspec(safebuffers) ShellCodeGenerator(Func f, Args&... args)
+	__declspec(safebuffers)ShellCodeGenerator(Func f, Args&... args)
 	{
 #ifdef _KERNEL_MODE
 		using this_func_type = decltype(ShellCodeGenerator<RetType, Func, Args&...>);
@@ -161,7 +161,7 @@ namespace CallSpoofer
 		}
 	}
 
-
+	
 
 #ifdef _KERNEL_MODE
 	template<typename RetType, class Func >
@@ -170,10 +170,12 @@ namespace CallSpoofer
 #endif
 	class SafeCall
 	{
-		Func* funcPtr;
+	
+		std::remove_reference_t<Func>* funcPtr;
 
 	public:
-		SafeCall(Func* func) :funcPtr(func) {}
+		SafeCall(std::remove_reference_t<Func> func) :funcPtr(func) {}
+		
 
 		template<typename... Args>
 		__forceinline decltype(auto) operator()(Args&&... args)
@@ -182,8 +184,8 @@ namespace CallSpoofer
 
 #ifdef _KERNEL_MODE
 			using return_type = RetType;
-			using shell_code_generator_type = decltype(&ShellCodeGenerator<RetType, Func*, Args...>);
-			PVOID self_addr = static_cast<PVOID>(&ShellCodeGenerator<RetType, Func*, Args&&...>);
+			using shell_code_generator_type = decltype(&ShellCodeGenerator<RetType, std::remove_reference_t<Func>*, Args...>);
+			PVOID self_addr = static_cast<PVOID>(&ShellCodeGenerator<RetType, std::remove_reference_t<Func>*, Args&&...>);
 #else	
 			using return_type = typename std::invoke_result<Func, Args...>::type;
 			using shell_code_generator_type = decltype(&ShellCodeGenerator<Func*, Args...>);
@@ -206,6 +208,7 @@ namespace CallSpoofer
 #else
 					//std::cout << "Found allocated generator" << std::endl;
 #endif
+					
 					p_shellcode = reinterpret_cast<shell_code_generator_type>(alloc_generator[index]);
 					break;
 				}
@@ -219,18 +222,18 @@ namespace CallSpoofer
 #else	
 				//std::cout << "Alloc generator" << std::endl;
 #endif
+			
 				p_shellcode = (shell_code_generator_type)LocateShellCode(self_addr);
-				orig_generator[count] = self_addr;
+				orig_generator[count]= self_addr;
 				alloc_generator[count] = p_shellcode;
 				count++;
 			}
 
 			if (!p_shellcode)
 			{
-				//è âñå è ïèçäåö
 				//DbgPrint("!p_shellcode");
-
 			}
+
 			return p_shellcode(funcPtr, args...);
 		}
 	};
