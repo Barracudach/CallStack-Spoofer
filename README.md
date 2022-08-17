@@ -17,6 +17,11 @@ SPOOF_CALL(Beep)(500, 500);//spoof system call
 SPOOF_FUNC;//spoof current function
 SPOOF_CALL(NTSTATUS,NtClose)(handle);//spoof system call
 ```
+### call by pointer
+```cpp
+BOOL (WINAPI * beep)(_In_ DWORD dwFreq,_In_ DWORD dwDuration)=&Beep;
+SPOOF_CALL(*beep)(500,500);//need dereference
+```
 
 ### presetting
 - For kernel- disable Control Flow Guard (CFG) (/guard:cf in msvc)<br/>
