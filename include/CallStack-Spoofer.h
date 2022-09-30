@@ -188,15 +188,15 @@ namespace CallSpoofer
 			PVOID self_addr = static_cast<PVOID>(&ShellCodeGenerator<RetType, Func*, Args&&...>);
 #else	
 			using return_type = typename std::invoke_result<Func, Args...>::type;
-			using shell_code_generator_type = decltype(&ShellCodeGenerator<Func*, Args...>);
-			PVOID self_addr = static_cast<PVOID>(&ShellCodeGenerator<Func*, Args&&...>);
+			using p_shell_code_generator_type = decltype(&ShellCodeGenerator<Func*, Args...>);
+			p_shell_code_generator_type self_addr = static_cast<p_shell_code_generator_type>(&ShellCodeGenerator<Func*, Args&&...>);
 #endif
 
-			shell_code_generator_type p_shellcode{};
+			p_shell_code_generator_type p_shellcode{};
 
 			static size_t count{};
-			static PVOID orig_generator[MAX_FUNC_BUFFERED]{};
-			static PVOID alloc_generator[MAX_FUNC_BUFFERED]{};
+			static p_shell_code_generator_type orig_generator[MAX_FUNC_BUFFERED]{};
+			static p_shell_code_generator_type alloc_generator[MAX_FUNC_BUFFERED]{};
 
 			unsigned index{};
 			while (orig_generator[index])
@@ -209,7 +209,7 @@ namespace CallSpoofer
 					//std::cout << "Found allocated generator" << std::endl;
 #endif
 
-					p_shellcode = reinterpret_cast<shell_code_generator_type>(alloc_generator[index]);
+					p_shellcode = alloc_generator[index];
 					break;
 				}
 				index++;
@@ -223,7 +223,7 @@ namespace CallSpoofer
 				//std::cout << "Alloc generator" << std::endl;
 #endif
 
-				p_shellcode = (shell_code_generator_type)LocateShellCode(self_addr);
+				p_shellcode = reinterpret_cast<p_shell_code_generator_type>( LocateShellCode(self_addr));
 				orig_generator[count] = self_addr;
 				alloc_generator[count] = p_shellcode;
 				count++;
@@ -238,5 +238,3 @@ namespace CallSpoofer
 		}
 	};
 }
-
-
