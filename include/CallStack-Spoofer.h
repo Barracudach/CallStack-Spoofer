@@ -184,7 +184,7 @@ namespace CallSpoofer
 
 #ifdef _KERNEL_MODE
 			using return_type = RetType;
-			using shell_code_generator_type = decltype(&ShellCodeGenerator<RetType, Func*, Args...>);
+			using p_shell_code_generator_type = decltype(&ShellCodeGenerator<RetType, Func*, Args...>);
 			PVOID self_addr = static_cast<PVOID>(&ShellCodeGenerator<RetType, Func*, Args&&...>);
 #else	
 			using return_type = typename std::invoke_result<Func, Args...>::type;
