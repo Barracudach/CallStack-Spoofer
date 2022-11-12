@@ -47,6 +47,7 @@
 namespace CallSpoofer
 {
 #ifdef _KERNEL_MODE
+	typedef unsigned __int64  uintptr_t, size_t;
 #pragma region std::forward
 	template <class _Ty>
 	struct remove_reference {
@@ -84,8 +85,6 @@ namespace CallSpoofer
 
 namespace CallSpoofer
 {
-	typedef unsigned __int64  uintptr_t, size_t;
-
 	class SpoofFunction
 	{
 	public:
